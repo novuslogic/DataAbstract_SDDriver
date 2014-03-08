@@ -325,6 +325,9 @@ function TDAESDConnection.CreateCustomConnection: TCustomConnection;
 begin
   fConnection := TSDConnection.Create(nil);
   fConnection.fSDdatabase.LoginPrompt := FALSE;
+
+  FConnection.fSDdatabase.DatabaseName := copy(NewStrippedGuidAsString, 1, 30);
+
   result := fConnection;
 end;
 
@@ -481,8 +484,6 @@ procedure TDAESDDriver.GetAuxParams(const AuxDriver: string;
   out List: IROStrings);
 begin
   inherited;
-
-
 
 end;
 
