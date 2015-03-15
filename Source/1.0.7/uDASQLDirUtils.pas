@@ -19,7 +19,8 @@ type
                   AServerType: Integer;
                   AUserName,
                   APassword: String;
-                  AParams: tStringList);  
+                  AParams: tStringList;
+                  ASQLLibrary: String);
   end;
 
 
@@ -43,12 +44,25 @@ begin
 
   ADatabase.Params.Clear;
 
-  ADatabase.Params.Values[szUSERNAME] := AUserName;
-  ADatabase.Params.Values[szPASSWORD] := APassword;
+  If TSDServerType(AServerType) <> stOLEDB then
+    begin
+      ADatabase.Params.Values[szUSERNAME] := AUserName;
+      ADatabase.Params.Values[szPASSWORD] := APassword;
+    end;
 
+  If TSDServerType(AServerType) = stOLEDB then
+    begin
+       ADatabase.Remotedatabase := 'Provider=' + aSQLLibrary + ';' +
+      'User ID=' + aUsername + ';' +
+      'Initial Catalog=' + aDatabase + ';' +
+      'Data Source=' + aServername + ';';
+
+    end
+  else
   If TSDServerType(AServerType) = stSQLServer then
     begin
       ADatabase.Params.Add('USE OLEDB=TRUE');
+      ADatabase.Params.Add('INIT COM=FALSE');
 
       ADatabase.Remotedatabase := AServerName + ':' + ARemoteDatabase;
     end
@@ -65,6 +79,9 @@ begin
         ADatabase.Remotedatabase := ARemoteDatabase
       else
         ADatabase.Remotedatabase := AServerName + ':' + ARemoteDatabase;
+
+     If (TSDServerType(AServerType) = stFirebird) then
+        ADatabase.Params.Add('Firebird API Library=' + aSQLLibrary);
     end
   else
     begin
