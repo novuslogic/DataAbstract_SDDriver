@@ -566,8 +566,40 @@ begin
 end;
 
 procedure TDAESDQuery.SetParamValues(AParams: TDAParamCollection);
+var
+  Counter : Integer;
+  P       : TDAParam;
+  O       : TParam;
+
 begin
   SetParamValuesStd(AParams,TSDQuery(Dataset).Params);
+
+  // BG 30/11/2015 - correct blob parameters as the default VariantToAnsiString loses data in binary
+  for Counter := 0 to AParams.Count - 1 do
+  begin
+    P := AParams[Counter];
+    O := FindParameter(TSDQuery(DataSet).Params, P.Name);
+
+    if P.DataType <> datBlob then
+    begin
+      continue;
+    end;
+
+    if (P.ParamType in [daptOutput, daptResult]) then
+    begin
+      continue;
+    end;
+
+    if VarIsEmpty(P.Value) or VarIsNull(P.Value) then
+    begin
+      O.Value := Null;
+    end
+    else
+    begin
+      O.Value := P.Value;                        // don't do any conversion - casting using VariantToAnsiString loses data
+    end;
+  end;
+
 end;
 
 procedure TDAESDQuery.GetParamValues(AParams: TDAParamCollection);
