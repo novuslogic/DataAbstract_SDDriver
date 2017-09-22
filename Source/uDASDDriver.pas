@@ -1,6 +1,6 @@
 unit uDASDDriver;
 
-{$I ..\DataAbstract.inc}
+{$I DataAbstract.inc}
 
 
 {$DEFINE MAX_SUPPORT}

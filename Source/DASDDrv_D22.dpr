@@ -1,4 +1,4 @@
-library DASDDrv_D16;
+library DASDDrv_D22;
 
 uses
   ShareMem,

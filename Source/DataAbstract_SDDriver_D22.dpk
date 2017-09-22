@@ -1,17 +1,18 @@
-package DataAbstract_SDDriver_D15;
+package DataAbstract_SDDriver_D22;
 
 {$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
 {$ALIGN 8}
 {$ASSERTIONS ON}
 {$BOOLEVAL OFF}
-{$DEBUGINFO ON}
+{$DEBUGINFO OFF}
 {$EXTENDEDSYNTAX ON}
 {$IMPORTEDDATA ON}
 {$IOCHECKS ON}
 {$LOCALSYMBOLS ON}
 {$LONGSTRINGS ON}
 {$OPENSTRINGS ON}
-{$OPTIMIZATION ON}
+{$OPTIMIZATION OFF}
 {$OVERFLOWCHECKS OFF}
 {$RANGECHECKS OFF}
 {$REFERENCEINFO ON}
@@ -22,7 +23,9 @@ package DataAbstract_SDDriver_D15;
 {$WRITEABLECONST OFF}
 {$MINENUMSIZE 1}
 {$IMAGEBASE $400000}
-{$DESCRIPTION 'RemObjects Data Abstract - SQLDirect Driver (Delphi XE)'}
+{$DEFINE DEBUG}
+{$ENDIF IMPLICITBUILDING}
+{$DESCRIPTION 'RemObjects Data Abstract - SQLDirect Driver (Delphi XE2) Win32'}
 {$IMPLICITBUILD OFF}
 
 requires
@@ -30,9 +33,9 @@ requires
   vcl,
   dbrtl,
   vcldb,
-  RemObjects_Core_D15,
-  DataAbstract_Core_D15,
-  SqlDir150;
+  SqlDir220,
+  RemObjects_Core_D22,
+  DataAbstract_Core_D22;
 
 contains
   uDASDDriver in 'uDASDDriver.pas',
