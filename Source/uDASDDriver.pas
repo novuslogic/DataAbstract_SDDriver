@@ -10,6 +10,11 @@ interface
 
 uses Classes, DB, uDAEngine, uDAInterfaces, uROClasses,  SDEngine,  uDAUtils,
      SDConsts, uDASQLDirUtils, uROBinaryHelpers, uDAIBInterfaces,
+     uDAEConnection,
+     uDAServerInterfaces,
+     uROStrings,
+     uDASQLMacroProcessor,
+     uDAFields,
      uDAADOInterfaces, uDAOracleInterfaces, uDACore, variants;
 
 const
