@@ -1,3 +1,7 @@
+13/11/2020 
+
+* UPdated to Delphi 10.4
+
 14/02/2020
 
 * Start of the Changelog

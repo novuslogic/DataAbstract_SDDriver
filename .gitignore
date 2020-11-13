@@ -64,3 +64,5 @@ __recovery/
 
 # Castalia statistics file (since XE7 Castalia is distributed with Delphi)
 *.stat
+Build/Win32/Debug/DASDDrv_D27.dad
+Build/Win64/Debug/DASDDrv_D27.dad
